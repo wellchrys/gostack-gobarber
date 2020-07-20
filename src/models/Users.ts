@@ -21,10 +21,10 @@ class Appointment {
   password: string;
 
   @CreateDateColumn()
-  created_at: Date;
+  create_at: Date;
 
   @UpdateDateColumn()
-  updated_at: Date;
+  update_at: Date;
 }
 
 export default Appointment;

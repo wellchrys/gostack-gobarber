@@ -4,21 +4,26 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  ManyToOne,
+  JoinColumn,
 } from 'typeorm';
 
-@Entity('users')
+import User from '@modules/users/infra/typeorm/entities/Users';
+
+@Entity('appointments')
 class Appointment {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
-  name: string;
+  provider_id: string;
 
-  @Column()
-  email: string;
+  @ManyToOne(() => User)
+  @JoinColumn({ name: 'provider_id' })
+  provider: User;
 
-  @Column()
-  password: string;
+  @Column('timestamp with time zone')
+  date: Date;
 
   @CreateDateColumn()
   create_at: Date;
